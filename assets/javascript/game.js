@@ -1,8 +1,3 @@
-// // HTML element variables
-// var winsHTML = document.getElementById('wins');
-// var lossesHTML = document.getElementById('losses');
-// var guessesLeftHTML = document.getElementById('guesses-left');
-// var guessesSfHTML = document.getElementById('guesses-sf');
 
 
 // array of possible choices
@@ -15,26 +10,42 @@ var lossScore = 0;
 // variable for guesses left
 var guessesLeft = 9;
 
+  // create computer letter
+  var compLetter = choices[Math.floor(Math.random() * choices.length)];
+
+  var alreadyGuessed = document.querySelector('#guesses-sf');
+
+
+
 // key pressed function
 document.onkeydown = function (event) {
     // capture user guess
     var guessesSf = event.key;
-    // create computer letter
-    var compLetter = choices[Math.floor(Math.random() * choices.length)];
-    console.log(compLetter)
+    console.log("user letter = " + guessesSf)
+    console.log("comp letter = " + compLetter)
+
     // compare user guess vs comp letter
     if (guessesSf === compLetter) {
         winScore++;
         guessesLeft = 9;
-        guessesSf = ""
+        document.querySelector('#guesses-sf').innerHTML = "";
+        compLetter = choices[Math.floor(Math.random() * choices.length)];
 
     } else {
         guessesLeft--;
-        document.getElementById("guess-sf").innerHTML = document.getElementById("guess-sf").innerHTML + ", " + guessesSf;
+
+        // append to the element's content
+        alreadyGuessed.innerHTML +=  guessesSf + ", ";
+
+          // console.log("users guesses prior to latest guess = " + alreadyGuessed.innerHTML)
+
         if (guessesLeft === 0) {
             lossScore++;
             guessesLeft = 9;
             guessesSf = ""
+            document.querySelector('#guesses-sf').innerHTML = "";
+            compLetter = choices[Math.floor(Math.random() * choices.length)];
+        
         }
     }
     // write data to html
