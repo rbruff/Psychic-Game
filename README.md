@@ -1,5 +1,7 @@
 # Psychic-Game
 
+A game where the user must guess the letter that the computer is thinking of.
+
 ## To be added in the future..
 * Make it pretty with CSS
 
